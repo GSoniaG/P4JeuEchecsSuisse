@@ -2,7 +2,6 @@
 update classement players by the manager
 """
 
-
 import json
 from pprint import pprint
 
@@ -23,11 +22,12 @@ class UpdatePlayerRank:
             json_data = json.loads(json_data)
 
         print(
-            "\n-----------Table PLAYER (classement mondial) à mettre à jour---------------"
+            "\n-> Table PLAYER (classement mondial) à mettre à jour : ",
+            nb_players,
+            "joueurs enregistrés dans la table PLAYER",
         )
-        print(nb_players, "joueurs enregistrés dans la table PLAYER")
-        print("\nVisualiser les joueurs et mettre à jour le classement mondial")
-        AccesUpdate = input(f"taper O (=Oui) ou tout autre caratère pour sortir) : ")
+        print("Visualiser les joueurs et mettre à jour le classement " "mondial")
+        AccesUpdate = input("taper O (=Oui) ou tout autre caratère pour sortir : ")
 
         while AccesUpdate == "O":
 
@@ -39,20 +39,24 @@ class UpdatePlayerRank:
             while True:
                 try:
                     Id_player = input(
-                        "\n-------- Id_joueur (classement) à mettre à jour : "
+                        "\n-> Id_joueur (classement) à " "mettre à jour : "
                     )
                     break
                 except ValueError:
                     print(
-                        "saisie non valide ! Veuillez choisir un ID joueur ou sortir [0]"
+                        "saisie non valide ! Veuillez choisir un ID "
+                        "joueur ou sortir [0]"
                     )
             Id_player = int(Id_player)
 
             actualclassement = dict_players["players"][str(Id_player)][
                 "classement_mondial"
             ]
-            print(f"-> classement actuel du joueur {Id_player} : {actualclassement}")
-            Classement = input("-------- classement de ce joueur à mettre à jour ? ")
+
+            print(
+                "-> classement actuel du joueur ", {Id_player}, "=", {actualclassement}
+            )
+            Classement = input("-> classement de ce joueur à mettre à jour ? ")
             dict_players["players"][str(Id_player)]["classement_mondial"] = int(
                 Classement
             )
@@ -61,6 +65,6 @@ class UpdatePlayerRank:
                 file.write(json.dumps(dict_players))
 
             AccesUpdate = input(
-                f"\nVisu table PLAYER et màj classement mondial taper O (Oui) ou tout "
-                "autre caratère pour sortir) : "
+                "\nVisu table PLAYER et màj classement mondial taper "
+                "O (Oui) ou tout autre caratère pour sortir) : "
             )

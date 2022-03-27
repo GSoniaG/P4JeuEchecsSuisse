@@ -11,11 +11,12 @@ class ViewMenuChoiceReport:
 
         while True:
             try:
-                user_choice_report = int(input(">> votre choix : "))
+                user_choice_report = int(input("-> votre choix : "))
                 break
             except ValueError:
                 print(
-                    "saisie non valide ! Veuillez choisir un chiffre ou sortir du menu [0]"
+                    "saisie non valide ! Veuillez choisir un chiffre"
+                    " ou sortir du menu [0]"
                 )
         user_choice_report = int(user_choice_report)
         return user_choice_report

@@ -2,17 +2,30 @@
 model player
 """
 
+from tinydb import TinyDB
+
 
 class Player:
-    """definition of players"""
-
-    def __init__(self):
-        self._id = id
+    def __init__(self, first_name, last_name, civility, birth, classement):
         self.first_name = first_name
         self.last_name = last_name
         self.civility = civility
         self.birth = birth
-        self.mondial_classement = mondial_classement
-        # entered by the manager
-        # the winner receives 1 point, the loser 0 point, else each player receives 0,5 point
-        # self.rank = rank # positive number = 0 at the beginning or each tournament
+        self.classement = classement
+
+    @classmethod
+    def save_multiple_players(cls, list_players):
+        db = TinyDB(cls.table_name)
+        table_players = db.table("players")
+        table_players.insert_multiple([player.serialize() for player in list_players])
+        print("table_players 23 : ", table_players)
+        print("list_players 24 : ", list_players)
+
+    def serialize(self):
+        return {
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "civility": self.civility,
+            "birth": self.birth,
+            "classement": self.classement,
+        }

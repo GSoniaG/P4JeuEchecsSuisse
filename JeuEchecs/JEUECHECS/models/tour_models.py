@@ -4,15 +4,9 @@ tour (round) model
 
 # from unicodedata import name
 
-from datetime import date, datetime
-from re import A
-
 
 class Tour:
-    """definition of tour"""
-
-    def __init__(self):
-        self.id_tour = id_tour
+    def __init__(self, id_tournament, name, start_date, start_time, end_date, end_time):
         self.id_tournament = id_tournament
         self.name = name
         self.start_date = start_date
