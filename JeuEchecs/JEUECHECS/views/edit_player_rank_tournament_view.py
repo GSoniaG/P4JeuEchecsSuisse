@@ -87,4 +87,3 @@ class ListPlayersRankOrderTournament:
                     endplayersorted[i][4],
                     endplayersorted[i][5],
                 )
-                # print(endplayersorted[i])
