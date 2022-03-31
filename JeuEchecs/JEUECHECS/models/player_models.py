@@ -18,8 +18,6 @@ class Player:
         db = TinyDB(cls.table_name)
         table_players = db.table("players")
         table_players.insert_multiple([player.serialize() for player in list_players])
-        print("table_players 23 : ", table_players)
-        print("list_players 24 : ", list_players)
 
     def serialize(self):
         return {
