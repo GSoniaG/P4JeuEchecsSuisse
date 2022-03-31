@@ -34,9 +34,7 @@ class PairsPlayers:
     # =========Sort players with world ranking (classement mondial)=========
     def RoundOne(self, Id_players):
         # 1st tour(round) or if same score between players
-        print("self.counter_rounds 37 : ", self.counter_rounds)
         self.counter_rounds += 1
-        print("self.counter_rounds 39 : ", self.counter_rounds)
         if self.counter_rounds + 1 > NB_ROUNDS:
             self.run(Id_players)
 
@@ -167,8 +165,6 @@ class PairsPlayers:
     def RoundNext(self, list_idplayers_score):
         # ROUNDS 2 3 and 4 with score sorting
 
-        print("self.counter_rounds 170 : ", self.counter_rounds)
-
         if self.counter_rounds + 1 > NB_ROUNDS:
             return
 
@@ -235,14 +231,12 @@ class PairsPlayers:
                     "\n ---> same number of points between at least 2 players"
                     " : sort them according to their rank > classement mondial\n"
                 )
-                print("self.counter_rounds 238 : ", self.counter_rounds)
                 self.run(Id_players)
 
             if self.counter_rounds + 1 > NB_ROUNDS:
                 return
-            print("self.counter_rounds 243 : ", self.counter_rounds)
+
             self.counter_rounds += 1
-            print("self.counter_rounds 245 : ", self.counter_rounds)
 
             self.list_idplayers_score.sort(key=lambda x: x[1])
             # sort on score
@@ -339,7 +333,6 @@ class PairsPlayers:
         dict_tournament["tournament"][str(nb_tournament)][
             "list_idplayers_score"
         ] = self.save_player_score
-        print("self.counter_rounds 342 : ", self.counter_rounds)
         dict_tournament["tournament"][str(nb_tournament)][
             "number_rounds_created"
         ] = self.counter_rounds
@@ -385,10 +378,7 @@ class PairsPlayers:
         self.save_player_score = self.list_idplayers_score
         self.nb_tournament = self.Id_tournament
 
-        print("self.number_rounds_created 383 : ", self.number_rounds_created)
-
         self.RoundNext(self.list_idplayers_score)
-        print("self.number_rounds_created 388 : ", self.number_rounds_created)
         return self.counter_rounds
 
     def run(self, Id_players):
@@ -396,27 +386,22 @@ class PairsPlayers:
             if self.counter_rounds + 1 > NB_ROUNDS:
                 break
             if self.counter_rounds < NB_ROUNDS:
-                print("self.counter_rounds 399 : ", self.counter_rounds)
                 list_idplayers_score = self.RoundOne(Id_players)
                 # sort players per classeement mondial
                 self.Update_End_Round()  # current tour
                 # ---------intermediate actions in the tournament----
                 if self.counter_rounds < NB_ROUNDS:
-                    print("self.counter_rounds 405 : ", self.counter_rounds)
                     stop_tournament = StopTournament()
                     # interrupt a tournament
                     self.exit = stop_tournament.run()
                 if self.exit == "O":
                     self.Interruption_Tournament()
-                    print("self.counter_rounds 411 : ", self.counter_rounds)
                     return
-                print("self.counter_rounds 413 : ", self.counter_rounds)
                 update_classement = UpdatePlayerRank()
                 # launch update classement after each round
                 # views.update_player_rank_view
                 update_classement.run()
                 if self.counter_rounds + 1 > NB_ROUNDS:
-                    print("self.counter_rounds 419 : ", self.counter_rounds)
                     return
                 self.RoundNext(list_idplayers_score)
                 # sort players per score of matchs
