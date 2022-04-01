@@ -15,7 +15,7 @@ edit tables (players, tournaments, ..)
 ***
 #### prerequisite:
 python
-file requirement.txt contains librairies used : pip install -r requirement.txt
-virtual environment : pip instal env
+file requirements.txt contains librairies used : pip install -r requirements.txt
+virtual environment : pip install env
 flake8 report with no error
 launch the main.py script from the console (terminal)
