@@ -49,6 +49,8 @@ class ListMatchs:
             dict_match = json.load(json_data)
             content_match = dict_match["matchs"]
         nb_match = len(content_match.keys())
+        print("\n nb_match : ", nb_match, "\n")
+        print("Id_tournament : ", Id_tournament)
 
         for i in range(nb_match):
             if dict_match["matchs"][str(i + 1)]["id_tournament"] == Id_tournament:

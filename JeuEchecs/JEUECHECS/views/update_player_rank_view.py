@@ -3,7 +3,6 @@ update classement players by the manager
 """
 
 import json
-from pprint import pprint
 
 
 class UpdatePlayerRank:
@@ -16,10 +15,7 @@ class UpdatePlayerRank:
             dict_players = json.load(json_data)
             content_players = dict_players["players"]
         nb_players = len(content_players.keys())
-
-        with open(r"db/players.json", "r") as f:
-            json_data = f.read()
-            json_data = json.loads(json_data)
+        key = list(dict_players["players"].keys())
 
         print(
             "\n-> Table PLAYER (classement mondial) à mettre à jour : ",
@@ -30,11 +26,24 @@ class UpdatePlayerRank:
         AccesUpdate = input("taper O (=Oui) ou tout autre caratère pour sortir : ")
 
         while AccesUpdate == "O":
-
-            with open(r"db/players.json", "r") as f:
-                json_data = f.read()
-                json_data = json.loads(json_data)
-            pprint(json_data, indent=0)
+            """
+            with open("db/players.json") as json_data:
+                dict_players = json.load(json_data)
+                content_players = dict_players["players"]
+            nb_players = len(content_players.keys())
+            """
+            print()
+            for i in range(nb_players):
+                print(
+                    "Id joueur : ",
+                    key[i],
+                    " - Nom :",
+                    content_players[str(i + 1)]["last_name"],
+                    " - Prénom :",
+                    content_players[str(i + 1)]["first_name"],
+                    " - Classement mondial =",
+                    content_players[str(i + 1)]["classement_mondial"],
+                )
 
             while True:
                 try:
@@ -53,9 +62,7 @@ class UpdatePlayerRank:
                 "classement_mondial"
             ]
 
-            print(
-                "-> classement actuel du joueur ", {Id_player}, "=", {actualclassement}
-            )
+            print("-> classement actuel du joueur N°", Id_player, "=", actualclassement)
             Classement = input("-> classement de ce joueur à mettre à jour ? ")
             dict_players["players"][str(Id_player)]["classement_mondial"] = int(
                 Classement
